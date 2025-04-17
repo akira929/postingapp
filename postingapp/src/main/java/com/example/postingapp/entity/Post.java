@@ -14,31 +14,25 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "users")
+@Table(name = "posts")
 @Data
-public class User {
+public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "name")
-	private String name;
-
-	@Column(name = "email")
-	private String email;
-	
-	@Column(name="password")
-	private String password;
-
 	@ManyToOne
-	@JoinColumn(name = "role_id")
-	private Role role;
+	@JoinColumn(name = "user_id")
+	private User user;
 
-	@Column(name = "enabled")
-	private Boolean enabled;
-	
-	@Column(name= "created_at", insertable = false, updatable = false)
+	@Column(name = "title")
+	private String title;
+
+	@Column(name = "content")
+	private String content;
+
+	@Column(name = "created_at",insertable = false, updatable = false)
 	private Timestamp createdAt;
 
 	@Column(name = "updated_at", insertable = false, updatable = false)
